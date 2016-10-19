@@ -13,7 +13,7 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
 
-    public static String WechatAuthenticate() {
+    public static Result WechatAuthenticate() {
 
         String signature = request().getQueryString("signature");
         String timestamp = request().getQueryString("timestamp");
@@ -22,7 +22,7 @@ public class Application extends Controller {
         try {
             if (WechatSignature.checkSignature(signature, timestamp, nonce))
             {
-                return echostr;
+                return ok(echostr);
 
             } else {
                 Logger.info("check signature failed");
@@ -35,7 +35,7 @@ public class Application extends Controller {
         Logger.info("nonce is :" + nonce);
         Logger.info("echostr is :" + echostr);
 
-        return null;
+        return ok("wrong siganture");
     }
 
 }

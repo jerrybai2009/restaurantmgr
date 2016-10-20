@@ -8,9 +8,10 @@ import views.html.*;
 
 public class Application extends Controller {
 
+    private static final String TITLE = "美食餐厅";
     public static Result index() {
 
-        return ok(index.render("Your new application is ready."));
+        return ok(index.render(TITLE));
     }
 
     public static Result WechatAuthenticate() {

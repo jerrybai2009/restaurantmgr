@@ -5,6 +5,10 @@
 <html>
     <head>
         <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/jpg" href="@routes.Assets.at("images/restaurantlogo.jpg")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta http-equiv="Cache-Control" content="no-transform"/>
@@ -22,14 +26,23 @@
         <meta content="telephone=no" name="format-detection" />
         <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 
+        <script type="text/javascript">
+
+        //html root的字体计算应该放在最前面，这样计算就不会有误差了/
+        //2016.3.23 wjq update 之所以要加个判断返回一个20.5，是因为当用户在谷歌等浏览器直接输入手机端网站网址时，如果用户设置模块自定义样式的高度比较小，由于这时候的clientWidth为1920px，及返回的_htmlFontSize为40，这时候就会使模块太小，展示不完全，因此先取一个较为准确的值去展示。Mobi.resetHtmlFontSize()顺便也加了
+        var _htmlFontSize = (function(){
+            var clientWidth = document.documentElement ? document.documentElement.clientWidth : document.body.clientWidth;
+            if(clientWidth > 640) clientWidth = 640;
+            document.documentElement.style.fontSize = clientWidth * 1/16+"px";
+            return clientWidth * 1/16;
+        })();
+
+        </script>
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/base.css")" title="default" />
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bannerAnimation.css")" title="" />
         <link rel="stylesheet" id="mobiStyleTemplateCss" type="text/css" href="@routes.Assets.at("stylesheets/template.css")"/>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
-
-
+            <!-- //输出模块样式css -->
         <style id='mobiStyleModule'>
         </style>
         <style id='mobiStyleNav' type='text/css'>
@@ -47,7 +60,6 @@
         #navbar_104 .icon-navItemIcon:before{content:'';content:'';}
         #navbar_104 .icon-navItemIcon{background-image:none;}
         </style>
-
 
         <style id='mobiCubeStyleModule'>
         </style>

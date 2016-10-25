@@ -4,8 +4,12 @@ import com.braintreegateway.BraintreeGateway;
 import com.braintreegateway.Transaction;
 import com.braintreegateway.TransactionRequest;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.apache.commons.lang3.StringUtils;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.*;
+import play.libs.Json;
 import play.mvc.*;
 import utils.WechatSignature;
 
@@ -23,25 +27,34 @@ public class Application extends Controller {
     private static final String TITLE = "美食餐厅";
     public static Result index() {
 
+        return ok(index.render(TITLE));
+    }
 
-        String accessToken = "TXCaVc_eEh_wZEkBQAxxgEyR3rGvt0ZlcITbn4YpUix6-usyzYFzn6aYmj4U14Rj2QN_NV3SxsaBT2yAnuA86U_8hqFMfvOP--yZfsFe1TUPLLfAEAYUU";
-        String ticket = "kgt8ON7yVITDhtdwci0qeeeauWc5eehDcjaNxRK2PnMfvNbJcJZ8e3uM-sBBF1wqKMRgzCMJIQ7e252Ng6ocDA";
+    public static Result getWechatSignature()
+    {
+        ObjectNode result = Json.newObject();
+
+        String accessToken = "QMLr96dYHTvCie6tQVgXL9RxrqIExPHbRyxxj6U2cVf3GR4a8qtU5S9EDJD2W6r27ldQZZo_zJTPlOYpwgBfS66kfAki3JD4uBK0kUTBpnhJHcw898h3vIYoxl_k20ZRWVDjAEAHGO";
+        String ticket = "kgt8ON7yVITDhtdwci0qeeeauWc5eehDcjaNxRK2PnMDNtU2jO7f3pIwXunAgott0pkYh7igCLGOxMOA5pFv_g";
         String noncestr = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         String url="https://restaurantmgr.herokuapp.com";
+        /*
         String[] ArrTmp = {"jsapi_ticket","timestamp","nonce","url"};
         Arrays.sort(ArrTmp);
         StringBuffer sf = new StringBuffer();
         for(int i=0;i<ArrTmp.length;i++){
             sf.append(ArrTmp[i]);
         }
-        String signature =SHA1(sf.toString());
-        //Logger.info(timestamp);
-        //Logger.info(signature);
-        //Logger.info(noncestr);
+        */
+        String str = "jsapi_ticket="+ticket+"&noncestr="+noncestr+"&timestamp="+timestamp+"&url="+url;
+        String signature =SHA1(str);
+        result.put("status", "ok");
+        result.put("timestamp", timestamp);
+        result.put("nonceStr", noncestr);
+        result.put("signature", signature);
+        return ok(result);
 
-
-        return ok(index.render(TITLE));
     }
 
     public static Result paypalToken()

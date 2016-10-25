@@ -34,7 +34,7 @@ public class Application extends Controller {
     {
         ObjectNode result = Json.newObject();
 
-        String accessToken = "QMLr96dYHTvCie6tQVgXL9RxrqIExPHbRyxxj6U2cVf3GR4a8qtU5S9EDJD2W6r27ldQZZo_zJTPlOYpwgBfS66kfAki3JD4uBK0kUTBpnhJHcw898h3vIYoxl_k20ZRWVDjAEAHGO";
+        String appId = "WECHAT APPID";
         String ticket = "kgt8ON7yVITDhtdwci0qeeeauWc5eehDcjaNxRK2PnMDNtU2jO7f3pIwXunAgott0pkYh7igCLGOxMOA5pFv_g";
         String noncestr = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
@@ -50,6 +50,7 @@ public class Application extends Controller {
         String str = "jsapi_ticket="+ticket+"&noncestr="+noncestr+"&timestamp="+timestamp+"&url="+url;
         String signature =SHA1(str);
         result.put("status", "ok");
+        result.put("appId", timestamp);
         result.put("timestamp", timestamp);
         result.put("nonceStr", noncestr);
         result.put("signature", signature);

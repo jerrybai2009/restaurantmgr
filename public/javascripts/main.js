@@ -34,9 +34,9 @@ console.log(location.href.split('#')[0]);
 wx.config({
     debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
     appId: 'wxb1a10559fba39dd1', // 必填，公众号的唯一标识
-    timestamp: 1477460337, // 必填，生成签名的时间戳
-    nonceStr: '8167ab44137343a2', // 必填，生成签名的随机串
-    signature: 'a1a69bd2222e66ac583694d930697d01c09cfe4f',// 必填，签名，见附录1
+    timestamp: 1477466635, // 必填，生成签名的时间戳
+    nonceStr: 'b8c7d8d09bfe49e2', // 必填，生成签名的随机串
+    signature: '171d9da3512231675a09f8888ee1c7bb3cf80cc9',// 必填，签名，见附录1
     jsApiList: ["chooseImage"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 });
 

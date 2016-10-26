@@ -33,14 +33,21 @@ public class Application extends Controller {
     public static Result getWechatSignature()
     {
         ObjectNode result = Json.newObject();
+        String url = request().getQueryString("url");
 
         String appId = "WECHAT APPID";
-        String ticket = "kgt8ON7yVITDhtdwci0qeeeauWc5eehDcjaNxRK2PnMDNtU2jO7f3pIwXunAgott0pkYh7igCLGOxMOA5pFv_g";
-        String noncestr = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
-        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        String url="https://restaurantmgr.herokuapp.com";
+        String ticket = "kgt8ON7yVITDhtdwci0qeeeauWc5eehDcjaNxRK2PnOZYaIc_78AR9k45T6Qka-qpec49eCNPh-oadlMq4iZ4g";
+        //String noncestr = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
+        String noncestr = "8167ab44137343a2";
+        //String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        String timestamp = "1477460337";
+        Logger.error("ticket:" + ticket);
+        Logger.error("noncestr:" + noncestr);
+        Logger.error("timestamp:" + timestamp);
+        Logger.error("url: " + url);
+
         /*
-        String[] ArrTmp = {"jsapi_ticket","timestamp","nonce","url"};
+        String[] ArrTmp = {ticket,timestamp,noncestr,url};
         Arrays.sort(ArrTmp);
         StringBuffer sf = new StringBuffer();
         for(int i=0;i<ArrTmp.length;i++){
@@ -48,12 +55,13 @@ public class Application extends Controller {
         }
         */
         String str = "jsapi_ticket="+ticket+"&noncestr="+noncestr+"&timestamp="+timestamp+"&url="+url;
+        //String str1 = sf.toString();
         String signature =SHA1(str);
         result.put("status", "ok");
-        result.put("appId", timestamp);
         result.put("timestamp", timestamp);
         result.put("nonceStr", noncestr);
         result.put("signature", signature);
+        result.put("str1", str);
         return ok(result);
 
     }

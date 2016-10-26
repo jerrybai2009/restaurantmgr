@@ -35,7 +35,7 @@ public class Application extends Controller {
         ObjectNode result = Json.newObject();
         String url = request().getQueryString("url");
 
-        String appId = "WECHAT APPID";
+        String appId = "wxb1a10559fba39dd1";
         String ticket = "kgt8ON7yVITDhtdwci0qeeeauWc5eehDcjaNxRK2PnOZYaIc_78AR9k45T6Qka-qpec49eCNPh-oadlMq4iZ4g";
         //String noncestr = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
         String noncestr = "8167ab44137343a2";
@@ -58,6 +58,7 @@ public class Application extends Controller {
         //String str1 = sf.toString();
         String signature =SHA1(str);
         result.put("status", "ok");
+        result.put("appId", appId);
         result.put("timestamp", timestamp);
         result.put("nonceStr", noncestr);
         result.put("signature", signature);

@@ -35,27 +35,14 @@ public class Application extends Controller {
         ObjectNode result = Json.newObject();
         String url = request().getQueryString("url");
 
-        String appId = "wxb1a10559fba39dd1";
+        String appId = "YOUAPPID";
         String ticket = "kgt8ON7yVITDhtdwci0qeeeauWc5eehDcjaNxRK2PnOZYaIc_78AR9k45T6Qka-qpec49eCNPh-oadlMq4iZ4g";
-        //String noncestr = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
-        String noncestr = "8167ab44137343a2";
-        //String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        String timestamp = "1477460337";
-        Logger.error("ticket:" + ticket);
-        Logger.error("noncestr:" + noncestr);
-        Logger.error("timestamp:" + timestamp);
-        Logger.error("url: " + url);
+        String noncestr = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        Logger.info("url: " + url);
 
-        /*
-        String[] ArrTmp = {ticket,timestamp,noncestr,url};
-        Arrays.sort(ArrTmp);
-        StringBuffer sf = new StringBuffer();
-        for(int i=0;i<ArrTmp.length;i++){
-            sf.append(ArrTmp[i]);
-        }
-        */
         String str = "jsapi_ticket="+ticket+"&noncestr="+noncestr+"&timestamp="+timestamp+"&url="+url;
-        //String str1 = sf.toString();
+        Logger.info(str);
         String signature =SHA1(str);
         result.put("status", "ok");
         result.put("appId", appId);

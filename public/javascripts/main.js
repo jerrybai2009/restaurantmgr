@@ -36,14 +36,14 @@ wx.config({
     appId: 'wxb1a10559fba39dd1', // 必填，公众号的唯一标识
     timestamp: 1477460337, // 必填，生成签名的时间戳
     nonceStr: '8167ab44137343a2', // 必填，生成签名的随机串
-    signature: '2e0e9153f9c36f1d1935cdca595ce7901facf609',// 必填，签名，见附录1
+    signature: 'a1a69bd2222e66ac583694d930697d01c09cfe4f',// 必填，签名，见附录1
     jsApiList: ["chooseImage"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 });
 
 
 wx.onMenuShareTimeline({
     title: '美食餐厅 沸腾鱼', // 分享标题
-    link: 'https://restaurantmgr.herokuapp.com', // 分享链接
+    link: 'https://restaurantmgr.herokuapp.com/weauth', // 分享链接
     imgUrl: 'https://restaurantmgr.herokuapp.com/assets/images/dongbeilapi.jpg', // 分享图标
     success: function () {
         // 用户确认分享后执行的回调函数

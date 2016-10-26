@@ -5,7 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-GET     /weauth                     controllers.Application.WechatAuthenticate()
+GET     /weauth                     controllers.Application.index()
 
 GET     /api/v1/token               controllers.Application.paypalToken()
 
